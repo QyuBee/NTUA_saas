@@ -2,7 +2,10 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - "**"             # all branches
+      - "!dependabot/**"      # exclude dependbot branches
+  workflow_dispatch:      # Manually run the workflow
 
 jobs:
   build-and-deploy:
