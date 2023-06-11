@@ -6,6 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' }} # Run only if triggered manually
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
