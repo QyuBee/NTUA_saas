@@ -1,5 +1,9 @@
 name: Docker Image CI
 
+env:
+  IMAGE_NAME: mychart
+  REGISTRY: ghcr.io
+  
 on:
   push:
     branches:
@@ -27,7 +31,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          tags: ghcr.io/mychart:latest
+          tags:
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{steps.get-tags.outputs.tags }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           push: true
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.ACCESS_TOKEN }}
