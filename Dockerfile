@@ -11,7 +11,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 USER node
-
+RUN ls -al
 RUN npm install --production
 
 COPY --chown=node:node .next .next
