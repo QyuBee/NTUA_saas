@@ -29,6 +29,5 @@ jobs:
           context: .
           tags: myimage:latest
           push: true
-          outputs: type=local,dest=build
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.ACCESS_TOKEN }}
