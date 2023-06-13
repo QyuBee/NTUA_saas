@@ -1,22 +1,36 @@
-FROM node:8-alpine
+FROM node:18-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN  npm install --production
+
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
 
 ENV NODE_ENV production
-ENV NPM_CONFIG_LOGLEVEL warn
+ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN mkdir /home/node/app/ && chown -R node:node /home/node/app
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-WORKDIR /home/node/app
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
-COPY package.json ./
-COPY package-lock.json ./
-
-USER node
-RUN ls -al
-RUN npm install --production
-
-COPY --chown=node:node .next .next
-COPY --chown=node:node public public
+USER nextjs
 
 EXPOSE 3000
 
-CMD npm start
+ENV PORT 3000
+
+CMD ["npm", "start"]
