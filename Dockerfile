@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:8-alpine
 
 ENV NODE_ENV production
 ENV NPM_CONFIG_LOGLEVEL warn
