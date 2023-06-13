@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          tags: ghcr.io/myChart:latest
+          tags: ghcr.io/mychart:latest
           push: true
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.ACCESS_TOKEN }}
