@@ -13,7 +13,7 @@ on:
 
 jobs:
   next-build:
-    if: ${{ github.event_name == 'workflow_dispatch' }}       # Run only if triggered manually
+#    if: ${{ github.event_name == 'workflow_dispatch' }}       # Run only if triggered manually
     runs-on: ubuntu-latest
     container: node:lts          # Use node LTS container version, same as Dockerfile base image
     steps:
