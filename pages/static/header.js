@@ -6,7 +6,7 @@ function Nav() {
 
     return (
         <div>
-            <button onClick={() => { router.push('/index'); }}>index</button>
+            <button onClick={() => { router.push('/'); }}>index</button>
             <button onClick={() => { router.push('/account'); }}>account</button>
             <button onClick={() => { router.push('/mycharts'); }}>mycharts</button>
             <button onClick={() => { router.push('/aboutus'); }}>aboutus</button>
