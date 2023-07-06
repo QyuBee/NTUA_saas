@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  ntua-saas-backend:
+    image: docker.io/mariadb:latest
+    container_name: ntua-saas-backend
+    environment:
+      - MARIADB_USER=
+      - MARIADB_ROOT_PASSWORD=
+    volumes:
+      - app/SQL/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    network_mode: bridge
+    restart: always
+
+  ntua-saas-frontend:
+    image: ghcr.io/qyubee/mychart:main
+    container_name: ntua-saas-frontend
+    depends_on:
+      - "ntua-saas-backend"
+    ports:
+      - "3000:3000"
+    volumes:
+      - app:/app
+    environment:
+      - GOOGLE_ID=                        # Google id from https://console.cloud.google.com/apis/credentials/oauthclient/
+      - GOOGLE_SECRET=                    # Google secret from https://console.cloud.google.com/apis/credentials/oauthclient/
+      - NEXTAUTH_URL=                     # URL of website ex: http://localhost:3000
+      - NEXTAUTH_SECRET=                  # Used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Create one with : openssl rand -base64 32
+      - MYSQL_HOST="localhost"
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE="ntua_saas"
+      - MYSQL_USER=""
+      - MYSQL_PASSWORD=""
+    network_mode: bridge
+    restart: always
+    
+  volumes:
+    app:
+      driver: local
+    db:
+      driver: local
