@@ -1,5 +1,11 @@
 version: '3.3'
 
+volumes:
+  db-init-file:
+    driver: local
+  db:
+    driver: local
+
 services:
   ntua-saas-backend:
     image: docker.io/mariadb:latest
@@ -8,10 +14,10 @@ services:
       - "3306:3306"
     environment:
       - MARIADB_USER=
+      - MARIADB_PASSWORD=
       - MARIADB_ROOT_PASSWORD=
     volumes:
-      - "db-init-file:/docker-entrypoint-initdb.d/"
-      - "db:/var/lib/mysql"
+      - db-init-file:/docker-entrypoint-initdb.d/
     network_mode: bridge
     restart: always
 
@@ -23,7 +29,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - "db-init-file:/app/SQL"
+      - db-init-file:/app/SQL
     environment:
       - GOOGLE_ID=                        # Google id from https://console.cloud.google.com/apis/credentials/oauthclient/
       - GOOGLE_SECRET=                    # Google secret from https://console.cloud.google.com/apis/credentials/oauthclient/
@@ -37,8 +43,3 @@ services:
     network_mode: bridge
     restart: always
     
-volumes:
-  db-init-file:
-    driver: local
-  db:
-    driver: local

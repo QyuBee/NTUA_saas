@@ -1,3 +1,7 @@
+CREATE DATABASE ntua_saas;
+
+USE ntua_saas;
+
 CREATE TABLE `users` (
   `email` text NOT NULL UNIQUE,
   `credits` int(11) NOT NULL,
