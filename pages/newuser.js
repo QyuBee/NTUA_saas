@@ -1,8 +1,7 @@
-import AccountPage from './account'
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Header from './static/header';
-import { createUser, getUser } from '@/lib/db';
+import { getUser } from '@/lib/db';
 // import withSession from '../lib/session'
 
 /* export const getServerSideProps = withSession(async function ({ req, res }) {
@@ -18,7 +17,6 @@ import { createUser, getUser } from '@/lib/db';
 
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { getServerSession } from "next-auth/next"
-import { cpSync } from 'fs';
 import { UserDB } from '@/lib/db_model';
 
 export async function getServerSideProps(context) {
