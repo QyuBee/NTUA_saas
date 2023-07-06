@@ -10,7 +10,7 @@ function Nav() {
             <button onClick={() => { router.push('/account'); }}>account</button>
             <button onClick={() => { router.push('/mycharts'); }}>mycharts</button>
             <button onClick={() => { router.push('/aboutus'); }}>aboutus</button>
-{/* 
+            {/* 
             <button onClick={() => { router.push('/credits'); }}>credits</button>
  <button onClick={() => { router.push('/createnewchart'); }}>createnewchart</button>
  */}
@@ -22,6 +22,13 @@ export default function Header() {
     const router = useRouter();
     const { data, status } = useSession();
     if (status === 'loading') return <h1> loading... please wait</h1>;
+
+    // console.log(router.route,status)
+
+    if (router.route != "/" && status === "unauthenticated") {
+        router.push('/');
+    }
+
     if (status === 'authenticated') {
         return (
             <div>
