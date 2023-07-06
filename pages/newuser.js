@@ -2,19 +2,6 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Header from './static/header';
 import { getUser } from '@/lib/db';
-// import withSession from '../lib/session'
-
-/* export const getServerSideProps = withSession(async function ({ req, res }) {
-    console.log("req",req)
-    const { user } = req.session
-   
-    const userDB = getUser(user.email) 
-   
-    return {
-      props: { userDB },
-    }
-  }) */
-
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { getServerSession } from "next-auth/next"
 import { UserDB } from '@/lib/db_model';
@@ -54,7 +41,7 @@ export default function NewUserPage({ userDB }) {
 
     if (userDB != null) {
         const user=new UserDB()
-        user.init(JSON.parse(userDB))
+        user.init(userDB)
         // console.log(user)
         fetch('/api/auth/setLastConnection', {
             method: 'POST',
