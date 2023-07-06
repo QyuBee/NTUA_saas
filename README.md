@@ -43,4 +43,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ```bash
 GOOGLE_ID={place_something_here}
 GOOGLE_SECRET={place_something_here}
+MYSQL_HOST="localhost"
+MYSQL_PORT=3306
+MYSQL_DATABASE="ntua_saas"
+MYSQL_USER="root"
+MYSQL_PASSWORD=""
  ```
+
+https://github.com/acmesh-official/acme.sh/issues/4048
