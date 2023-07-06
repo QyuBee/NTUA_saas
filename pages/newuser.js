@@ -47,12 +47,14 @@ export default function NewUserPage({ userDB }) {
     let { data, status, update } = useSession();
     const router = useRouter();
     let Page;
-    const user=new UserDB()
-    user.init(JSON.parse(userDB))
 
     if (status === 'loading') return <h1> loading... please wait</h1>;
 
-    if (user != null) {
+    userDB=JSON.parse(userDB)
+
+    if (userDB != null) {
+        const user=new UserDB()
+        user.init(JSON.parse(userDB))
         // console.log(user)
         fetch('/api/auth/setLastConnection', {
             method: 'POST',
@@ -72,7 +74,7 @@ export default function NewUserPage({ userDB }) {
             // return response.json();
         })
 
-    } else if (user == null) {
+    } else if (userDB == null) {
         return (
             <div>
                 <Header></Header>
