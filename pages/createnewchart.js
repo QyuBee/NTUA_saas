@@ -110,7 +110,7 @@ export default function CreateChartPage({ userDB }) {
     const DOWNLOAD_ENDPOINT = "/api/chart/downloadtemplate";
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(file)
+        // console.log(file)
         //if await is removed, console log will be called before the uploadFile() is executed completely.
         //since the await is added, this will pause here then console log will be called
         const formData = new FormData();
@@ -119,8 +119,13 @@ export default function CreateChartPage({ userDB }) {
             headers: {
                 "content-type": "multipart/form-data"
             }
-        }).then(data => {
-            console.log(data.data);
+        }).then(response => {
+            response.data.data=JSON.stringify(response.data.data)
+            // console.log(response.data);
+            router.push({
+                pathname: '/newchartdone',
+                query: response.data
+            })
         });
     };
 
