@@ -26,12 +26,9 @@ export default async (req, res) => {
     const contents = await fs.readFile(data?.files?.myfile[0].filepath, {
         encoding: 'utf8',
     })
-
-    console.log(csvJSON(contents))
-
     // contents is a string with the content of uploaded file, so you can read it or store
 
-    res.status(200).end()
+    res.status(200).end(csvJSON(contents))
 }
 
 function csvJSON(csv){
@@ -64,12 +61,12 @@ function csvJSON(csv){
     var result = {title:title[1],type:type[1],x_axe:x_axe.slice(1,x_axe.length),y_axe:y_axe[1],data:[]};
 
 
-    for(var i=firstLineData;i<lines.length-1;i++){
+    for(var i=firstLineData;i<lines.length;i++){
         var obj = {};
         var currentline=lines[i].split(",");
 
         obj.name=currentline[0]
-        obj.data=currentline.slice(1, currentline.length);
+        obj.data=currentline.slice(1, currentline.length).map((data)=>{return parseFloat(data)});
   
         /* for(var j=0;j<headers.length;j++){
             obj[headers[j]] = currentline[j];
