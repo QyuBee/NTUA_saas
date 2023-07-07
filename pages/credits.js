@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { getUser } from '@/lib/db';
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { getServerSession } from "next-auth/next"
-import { UserDB } from '@/lib/db_model';
+import { Button, Container, Group } from '@mantine/core';
 
 export async function getServerSideProps(context) {
     const session = await getServerSession(context.req, context.res, authOptions)
@@ -38,7 +38,7 @@ export default function CreditPage({ userDB }) {
 
     const ButtonCredit = (props) => {
         return (
-            <button onClick={() => {
+            <Button onClick={() => {
                 //Insert into database
                 fetch('/api/auth/addcredits', {
                     method: 'POST',
@@ -57,26 +57,28 @@ export default function CreditPage({ userDB }) {
 
                     // return response.json();
                 })
-            }}>{props.number} credits</button>
+            }}>{props.number} credits</Button>
         )
     }
 
     if (userDB != null) {
         Page = (
-            <div>
+            <Group>
                 <ButtonCredit number={5} />
                 <ButtonCredit number={10} />
                 <ButtonCredit number={20} />
                 <ButtonCredit number={50} />
-            </div>
+            </Group>
         )
     }
 
     return (
         <div>
             <Header></Header>
+            <Container>
             <h1>Buy Credits</h1>
             {status === "authenticated" && Page}
+            </Container>
         </div>
     );
 

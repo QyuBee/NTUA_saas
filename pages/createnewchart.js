@@ -5,8 +5,11 @@ import React, { useState } from 'react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
 import { getUser } from '@/lib/db';
-import { UserDB } from '@/lib/db_model';
 import axios from 'axios';
+import { Button, Container, FileInput, Group, Modal, rem } from '@mantine/core';
+import { IconUpload } from '@tabler/icons-react';
+import { useDisclosure } from '@mantine/hooks';
+import { Carousel } from '@mantine/carousel';
 
 
 export async function getServerSideProps(context) {
@@ -31,80 +34,16 @@ export async function getServerSideProps(context) {
 }
 
 export default function CreateChartPage({ userDB }) {
-    let { data, status, update } = useSession();
+    let { status } = useSession();
     const router = useRouter();
     const [file, setFile] = useState(null);
-    let Page;
+    const [error, setError] = useState(null);
+    const [opened, { open, close }] = useDisclosure(false);
 
     if (status === 'loading') return <h1> loading... please wait</h1>;
 
     userDB = JSON.parse(userDB)
 
-    if (userDB != null) {
-        const user = new UserDB()
-        user.init(userDB)
-        // console.log(user)
-
-    }
-    const style = ` /* Popup container */
-    .popup {
-        position: relative;
-    display: inline-block;
-    cursor: pointer;
-    }
-
-    /* The actual popup (appears on top) */
-    .popup .popuptext {
-        visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-    }
-
-    /* Popup arrow */
-    .popup .popuptext::after {
-        content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-    }
-
-    /* Toggle this class when clicking on the popup container (hide and show the popup) */
-    .popup .show {
-        visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-    }
-
-    /* Add animation (fade in the popup) */
-    @-webkit-keyframes fadeIn {
-        from {opacity: 0;}
-    to {opacity: 1;}
-    }
-
-    @keyframes fadeIn {
-        from {opacity: 0;}
-    to {opacity:1 ;}
-    } `;
-
-
-    // One liner function:
-    const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML = css;
-
-    // Usage: 
-    addCSS(style)
 
     const UPLOAD_ENDPOINT = "/api/chart/parsecsv";
     const DOWNLOAD_ENDPOINT = "/api/chart/downloadtemplate";
@@ -120,89 +59,87 @@ export default function CreateChartPage({ userDB }) {
                 "content-type": "multipart/form-data"
             }
         }).then(response => {
-            response.data.data=JSON.stringify(response.data.data)
+            response.data.data = JSON.stringify(response.data.data)
             // console.log(response.data);
             router.push({
                 pathname: '/newchartdone',
                 query: response.data
             })
-        });
-    };
-
-    const handleOnChange = e => {
-        console.log(e.target.files[0]);
-        setFile(e.target.files[0]);
+        })
+            .catch(error => {
+                // Gérez les erreurs de la requête
+                open()
+                setError(error.response.data)
+                console.error(error.response.data);
+            });
     };
 
     const DownloadFile = (type) => {
-        axios.post(DOWNLOAD_ENDPOINT, {type:type})
-        .then(response => {
-          // Manipulez la réponse du serveur
-          // Dans ce cas, nous allons télécharger le fichier
-          const filename = response.headers['content-disposition'].split('filename=')[1];
-          const csvFile = response.data;
-      
-          // Créez un lien de téléchargement pour le fichier
-          const downloadLink = document.createElement('a');
-          downloadLink.href = URL.createObjectURL(new Blob([csvFile]));
-          downloadLink.setAttribute('download', filename);
-      
-          // Ajoutez le lien de téléchargement à la page
-          document.body.appendChild(downloadLink);
-      
-          // Cliquez sur le lien pour lancer le téléchargement
-          downloadLink.click();
-        })
-        .catch(error => {
-          // Gérez les erreurs de la requête
-          console.error(error);
-        });
+        axios.post(DOWNLOAD_ENDPOINT, { type: type })
+            .then(response => {
+                // Manipulez la réponse du serveur
+                // Dans ce cas, nous allons télécharger le fichier
+                const filename = response.headers['content-disposition'].split('filename=')[1];
+                const csvFile = response.data;
+
+                // Créez un lien de téléchargement pour le fichier
+                const downloadLink = document.createElement('a');
+                downloadLink.href = URL.createObjectURL(new Blob([csvFile]));
+                downloadLink.setAttribute('download', filename);
+
+                // Ajoutez le lien de téléchargement à la page
+                document.body.appendChild(downloadLink);
+
+                // Cliquez sur le lien pour lancer le téléchargement
+                downloadLink.click();
+            })
+            .catch(error => {
+                // Gérez les erreurs de la requête
+                open()
+                setError(error)
+                console.error(error);
+            });
     }
 
     return (
         <div>
             <Header></Header>
-            <div class="popup" onclick="myFunction()">Click me!
-                <span class="popuptext" id="myPopup">ERROR</span>
-            </div>
+            <Container>
+                <Carousel>
+                    <Carousel.Slide>
+                        <Button type="Button" onClick={() => { DownloadFile("bar") }}>Download bar template</Button>
+                    </Carousel.Slide>
 
-            <button onClick={() => { router.push('/mycharts'); }}>cancel</button>
-            <button onClick={() => {
-                //traitement
-                const error = false;
-                if (error) {
-                    router.push('/newchartdone');
-                } else {
-                    var popup = document.getElementById("myPopup");
-                    popup.classList.toggle("show");
+                    <Carousel.Slide>
+                        <Button type="Button" onClick={() => { DownloadFile("line") }}>Download line template</Button>
+                    </Carousel.Slide>
 
-                    // router.push('/errorcreatingchart');
-                }
-            }}>new chart</button>
+                    <Carousel.Slide>
+                        <Button type="Button" onClick={() => { DownloadFile("pie") }}>Download pie template</Button>
+                    </Carousel.Slide>
 
+                </Carousel>
+                {/* // We pass the event to the handleSubmit() function on submit. */}
+                <form onSubmit={handleSubmit}>
+                    <Modal opened={opened} onClose={close} title="Error chart">
+                        {error}
+                    </Modal>
 
+                    <h3>Select your files</h3>
+                    <FileInput label="Upload csv files" placeholder="Upload csv files" icon={<IconUpload size={rem(14)} accept="csv" />} onChange={setFile} />
 
-            {/* // We pass the event to the handleSubmit() function on submit. */}
-            <form onSubmit={handleSubmit}>
-                <h3>Select your files</h3>
-                <input
-                    type="file"
+                    <br />
+                    <br />
+                    <Group>
+                        <Button type="submit">
+                            Send File
+                        </Button>
+                        <Button type="Button" onClick={() => { router.push('/mycharts'); }}>cancel</Button>
 
-                    // To select multiple files
-                    //multiple="multiple"
-                    onChange={(e) => handleOnChange(e)}
-                />
+                    </Group>
 
-                <button>
-                    Send Files
-                </button>
-
-                
-            <button type="button" onClick={()=>{DownloadFile("bar")}}>Download bar</button>
-            <button type="button" onClick={()=>{DownloadFile("bar")}}>Download bar</button>
-            <button type="button" onClick={()=>{DownloadFile("bar")}}>Download bar</button>
-
-            </form>
+                </form>
+            </Container>
         </div>
     );
 
