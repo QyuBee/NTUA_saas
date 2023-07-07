@@ -10,7 +10,7 @@ const handler = async (req, res) => {
     try {
         let fs = require('fs');
         const csvFile = fs.createReadStream(`${process.cwd()}/public/templates/${filename}`);
-        console.log(csvFile)
+        // console.log(csvFile)
         res
           .status(200)
           .setHeader("Content-Type", "text/csv")
