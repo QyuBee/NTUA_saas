@@ -5,6 +5,7 @@ import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Group } from '@mantine/core';
+import axios from 'axios';
 
 export default withRouter(NewChartDonePage)
 
@@ -136,44 +137,57 @@ function NewChartDonePage() {
 
     if (status === 'loading') return <h1> loading... please wait</h1>;
 
+    const UPLOAD_ENDPOINT = "/api/chart/savechart";
+
     // Handles the submit event on form submit.
     const handleSubmit = async (event) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
 
         // Get data from the form.
-        const data = {
-            html: document.getElementsByClassName("highcharts-container").getParent().innerHTML,
-            chartOption: null,
-        }
 
         // Send the data to the server in JSON format.
-        const JSONdata = JSON.stringify(data)
 
-        // API endpoint where we send form data.
-        const endpoint = '/api/chart/savechart'
+        const collection  = document.getElementsByClassName("highcharts-container")
 
-        // Form the request for sending data to the server.
-        const options = {
-            // The method is POST because we are sending data.
-            method: 'POST',
-            // Tell the server we're sending JSON.
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            // Body of the request is the JSON data we created above.
-            body: JSONdata,
+        // Create a new HTML document
+        const newDocument = document.implementation.createHTMLDocument('collection');
+
+        // Create a container element to hold the collection
+        const container = newDocument.createElement('div');
+
+        // Iterate over the collection and clone each element into the container
+        for (let i = 0; i < collection.length; i++) {
+            const element = collection[i].cloneNode(true);
+            container.appendChild(element);
         }
 
-        // Send the form data to our forms API on Vercel and get a response.
-        const response = await fetch(endpoint, options)
+        // Serialize the container's HTML content
+        const htmlContent = container.innerHTML;
 
+        // Convert the HTML content to a Blob
+        const blob = new Blob([htmlContent], { type: 'text/html' });
 
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
-        const result = await response.json()
-        // console.log(result)
-        alert(`Is this your full name: ${result.message}`)
+        const formData = new FormData();
+        formData.append("myfile", new Blob([htmlContent], { type: "text/html" }), "chart.html");
+
+        formData.append("chartOption", JSON.stringify(chartOptions));
+        formData.append("user", data.user.email);
+
+        axios.post(UPLOAD_ENDPOINT, formData, {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        }).then(response => {
+            response.data.data = JSON.stringify(response.data.data)
+            // console.log(response.data);
+            router.push({
+                pathname: '/mycharts',
+            })
+        }).catch(error => {
+            // Gérez les erreurs de la requête
+            console.error(error);
+        });
     }
 
     return (
@@ -184,12 +198,9 @@ function NewChartDonePage() {
                 <HighchartsReact highcharts={Highcharts} options={chartOptions} />
 
                 <Group spacing={"xs"}>
-                    <Button onClick={() => {
-                        //Insert db
-                        router.push('/mycharts');
-                    }}>save to my chart</Button>
+                    <Button onClick={handleSubmit}>save to my chart</Button>
 
-                    <Button onClick={() => { handleSubmit }}>discard</Button>
+                    <Button onClick={() => { router.push('/createnewchart'); }}>discard</Button>
 
                 </Group>
             </Container>
