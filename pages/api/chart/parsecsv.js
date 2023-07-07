@@ -35,33 +35,45 @@ export default async (req, res) => {
 }
 
 function csvJSON(csv){
+    var firstLineData=5;
 
     var lines=csv.split("\n");
 
-    if(lines[0].split(",").length>1 && lines[1].split(",").length>1){
+    if(lines.length<firstLineData){
+        throw new Error("wrong format")
+    }
+    const title=lines[0].split(",")
+    const type=lines[1].split(",")
+    const y_axe=lines[2].split(",")
+    const x_axe=lines[3].split(",")
+    const data=lines[4].split(",")
+
+    if(!(title[0]=="title" && type[0]=="type" && y_axe[0]=="y_axe" && x_axe[0]=="x_axe" && data[0]=="data")  ){
         throw new Error("wrong format")
     }
   
-    if(!["line","bar","pie"].includes(lines[1])){
+    if(!["line","bar","pie"].includes(type[1])){
         throw new Error("wrong type")
     }
   
-    var result = {title:lines[0],type:lines[1],data:[]};
-  
+    
     // NOTE: If your columns contain commas in their values, you'll need
     // to deal with those before doing the next step 
     // (you might convert them to &&& or something, then covert them back later)
-    // jsfiddle showing the issue https://jsfiddle.net/
-    var headers=lines[2].split(",");
-  
-    for(var i=3;i<lines.length;i++){
-  
+    // jsfiddle showing the issue https://jsfiddle.net/    
+    var result = {title:title[1],type:type[1],x_axe:x_axe.slice(1,x_axe.length),y_axe:y_axe[1],data:[]};
+
+
+    for(var i=firstLineData;i<lines.length-1;i++){
         var obj = {};
         var currentline=lines[i].split(",");
+
+        obj.name=currentline[0]
+        obj.data=currentline.slice(1, currentline.length);
   
-        for(var j=0;j<headers.length;j++){
+        /* for(var j=0;j<headers.length;j++){
             obj[headers[j]] = currentline[j];
-        }
+        } */
   
         result.data.push(obj);
   
