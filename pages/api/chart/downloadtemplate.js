@@ -1,6 +1,6 @@
 import { getSession } from 'next-auth/react';
 
-const handler = async (req, res) => {
+const handler = async (req, res) => {  
   const session = await getSession({ req });
 
   if (!session) {
@@ -8,12 +8,13 @@ const handler = async (req, res) => {
       return;
   }
 
+    if(!["bar","pie","line"].includes(req.query.type))
     {
         res.status(400).end();
     }
-    const filename = req.body.type+"-chart.csv"
+    const filename = req.query.type+"-chart.csv"
 
-    console.log(`${process.cwd()}/public/templates/${filename}`)
+    // console.log(`${process.cwd()}/public/templates/${filename}`)
     try {
         let fs = require('fs');
         const csvFile = fs.createReadStream(`${process.cwd()}/public/templates/${filename}`);
