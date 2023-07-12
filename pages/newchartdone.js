@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Group, Modal, LoadingOverlay } from '@mantine/core';
 import axios from 'axios';
+import { useDisclosure } from '@mantine/hooks';
 
 export default withRouter(NewChartDonePage)
 
@@ -13,6 +14,8 @@ function NewChartDonePage() {
     const { data, status } = useSession();
     const router = useRouter();
     const [chartOptions, setChartOptions] = useState({});
+    const [opened, { open, close }] = useDisclosure(false);
+    const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -145,7 +148,7 @@ function NewChartDonePage() {
 
         // Send the data to the server in JSON format.
 
-        const collection  = document.getElementsByClassName("highcharts-container")
+        const collection = document.getElementsByClassName("highcharts-container")
 
         // Create a new HTML document
         const newDocument = document.implementation.createHTMLDocument('collection');
@@ -162,21 +165,18 @@ function NewChartDonePage() {
         // Serialize the container's HTML content
         const htmlContent = container.innerHTML;
 
-        // Convert the HTML content to a Blob
-        const blob = new Blob([htmlContent], { type: 'text/html' });
 
         const formData = new FormData();
         formData.append("myfile", new Blob([htmlContent], { type: "text/html" }), "chart.html");
 
         formData.append("chartOption", JSON.stringify(chartOptions));
-        formData.append("user", data.user.email);
 
         axios.post(UPLOAD_ENDPOINT, formData, {
             headers: {
                 "content-type": "multipart/form-data"
             }
         }).then(response => {
-            response.data.data = JSON.stringify(response.data.data)
+            // response.data.data = JSON.stringify(response.data.data)
             // console.log(response.data);
             router.push({
                 pathname: '/mycharts',
@@ -184,6 +184,11 @@ function NewChartDonePage() {
         }).catch(error => {
             // Gérez les erreurs de la requête
             console.error(error);
+            if (error) {
+                setLoading(false)
+                setError(error.response.data)
+                open()
+            }
         });
     }
 
@@ -193,6 +198,9 @@ function NewChartDonePage() {
             <LoadingOverlay visible={(status === 'loading' || loading == true) ? true : false} overlayBlur={2} />
 
             <Container>
+                <Modal opened={opened} onClose={close} title="Error chart">
+                    {error}
+                </Modal>
 
                 <HighchartsReact highcharts={Highcharts} options={chartOptions} />
 
