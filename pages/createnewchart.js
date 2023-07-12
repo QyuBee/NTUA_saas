@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Center, Container, FileInput, Group, Modal, rem } from '@mantine/core';
+import { Button, Center, Container, FileInput, Group, Modal, rem, LoadingOverlay } from '@mantine/core';
 import { IconUpload } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { Carousel } from '@mantine/carousel';
@@ -164,6 +164,7 @@ export default function CreateChartPage({ templates }) {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
     const [opened, { open, close }] = useDisclosure(false);
+    const [loading, setLoading] = useState(false)
 
     if (status === 'loading') return <h1> loading... please wait</h1>;
 
@@ -173,6 +174,7 @@ export default function CreateChartPage({ templates }) {
     const DOWNLOAD_ENDPOINT = "/api/chart/downloadtemplate";
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
         // console.log(file)
         //if await is removed, console log will be called before the uploadFile() is executed completely.
         //since the await is added, this will pause here then console log will be called
@@ -192,6 +194,7 @@ export default function CreateChartPage({ templates }) {
         })
             .catch(error => {
                 // Gérez les erreurs de la requête
+                setLoading(false)
                 open()
                 setError(error.response.data)
                 console.error(error.response.data);
@@ -228,6 +231,7 @@ export default function CreateChartPage({ templates }) {
     return (
         <div>
             <Header></Header>
+            <LoadingOverlay visible={(templates == null || status === 'loading' || loading== true) ? true : false} overlayBlur={2} />
             <Container>
                 <Carousel loop>
                     {templates.map((template) => {

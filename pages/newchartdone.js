@@ -4,7 +4,7 @@ import { useRouter, withRouter } from 'next/router';
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Group } from '@mantine/core';
+import { Button, Container, Group, Modal, LoadingOverlay } from '@mantine/core';
 import axios from 'axios';
 
 export default withRouter(NewChartDonePage)
@@ -13,6 +13,7 @@ function NewChartDonePage() {
     const { data, status } = useSession();
     const router = useRouter();
     const [chartOptions, setChartOptions] = useState({});
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (router.isReady) {
@@ -132,17 +133,13 @@ function NewChartDonePage() {
         }
     }, [router.isReady]);
 
-
-
-
-    if (status === 'loading') return <h1> loading... please wait</h1>;
-
     const UPLOAD_ENDPOINT = "/api/chart/savechart";
 
     // Handles the submit event on form submit.
     const handleSubmit = async (event) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
+        setLoading(true)
 
         // Get data from the form.
 
@@ -193,6 +190,8 @@ function NewChartDonePage() {
     return (
         <div>
             <Header></Header>
+            <LoadingOverlay visible={(status === 'loading' || loading == true) ? true : false} overlayBlur={2} />
+
             <Container>
 
                 <HighchartsReact highcharts={Highcharts} options={chartOptions} />

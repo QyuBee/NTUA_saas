@@ -1,13 +1,9 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Header from './static/header';
-import { getUser } from '@/lib/db';
-import { getServerSession } from 'next-auth';
-import { authOptions } from './api/auth/[...nextauth]';
-import { Button, Container, Group } from '@mantine/core';
+import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
 
-export async function getServerSideProps(context) {
-    const session = await getServerSession(context.req, context.res, authOptions)
+    const [loading, setLoading] = useState(false)
 
     if (!session) {
         return {
@@ -52,6 +48,7 @@ export default function AccountPage({ userDB }) {
     return (
         <div>
             <Header></Header>
+            <LoadingOverlay visible={userDB==null || loading ?  true : false} overlayBlur={2} />;
             <Container>
                 <h1>Account</h1>
                 {status === "authenticated" && Page}

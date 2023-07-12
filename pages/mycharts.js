@@ -1,10 +1,7 @@
 import Header from './static/header';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import Highcharts from 'highcharts/highstock'
-import HighchartsReact from 'highcharts-react-official'
-import React from 'react';
-import { Button, Container, Group, Table, Title } from '@mantine/core';
+import { Button, Container, SimpleGrid, Table, Title, ScrollArea, createStyles, rem, LoadingOverlay } from '@mantine/core';
 
 export default function MyChartsPage() {
     const { data, status } = useSession();
@@ -30,6 +27,7 @@ export default function MyChartsPage() {
     return (
         <div>
             <Header></Header>
+            <LoadingOverlay visible={status === 'loading' ? true : false} overlayBlur={2} />;
             <Container fluid m={0}>
                 <Title>My chart</Title>
                 <Group noWrap>

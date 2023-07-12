@@ -5,7 +5,7 @@ import { getUser } from '@/lib/db';
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { getServerSession } from "next-auth/next"
 import { UserDB } from '@/lib/db_model';
-import { Button, Container, Group } from '@mantine/core';
+import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
 
 export async function getServerSideProps(context) {
     const session = await getServerSession(context.req, context.res, authOptions)
@@ -34,7 +34,7 @@ export default function NewUserPage({ userDB }) {
     const router = useRouter();
     let Page;
 
-    if (status === 'loading') return <h1> loading... please wait</h1>;
+    if (status === 'loading') return <LoadingOverlay visible={true} overlayBlur={2} />;
 
     userDB = JSON.parse(userDB)
 

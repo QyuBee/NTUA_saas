@@ -24,7 +24,6 @@ export default function Header() {
     const router = useRouter();
     const { data, status } = useSession();
     const { classes } = useStyles();
-    if (status === 'loading') return <h1> loading... please wait</h1>;
 
     // console.log(router.route,status)
 
