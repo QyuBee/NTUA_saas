@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Header from './static/header';
 import { getUser } from '@/lib/db';
@@ -47,7 +47,6 @@ export default function NewUserPage({ userDB }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email: data.user.email }),
         }).then(function (response) {
             // console.log(response.status); // Will show you the status
             if (response.status != 200 && response.status != 500) {
@@ -76,7 +75,6 @@ export default function NewUserPage({ userDB }) {
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ email: data.user.email }),
                             }).then(function (response) {
                                 // console.log(response.status); // Will show you the status
                                 if (response.status != 200 && response.status != 500) {
