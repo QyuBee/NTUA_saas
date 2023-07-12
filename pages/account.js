@@ -2,44 +2,44 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Header from './static/header';
 import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-    const [loading, setLoading] = useState(false)
-
-    if (!session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-
-    const userDB = await getUser(session.user.email)
-
-    return {
-        props: {
-            userDB: JSON.stringify(userDB),
-        },
-    }
-}
-
-export default function AccountPage({ userDB }) {
+export default function AccountPage() {
     const { status } = useSession();
     const router = useRouter();
+    const [userDB,setUserDB]=useState(null)
+    const [loading, setLoading] = useState(false)
+
 
     let Page;
 
+    useEffect(() => {
+        const optionsAxios = {
+            method: 'GET',
+            url: 'http://localhost:3000/api/auth/getuser',
+        };
+
+        axios.request(optionsAxios).then(function (response) {
+            const result = response.data
+
+            setUserDB(result)
+        }).catch(function (error) {
+            console.error(error);
+            router.push("/")
+        });
+    }, [])
+
     if (status === "authenticated") {
-        userDB = JSON.parse(userDB)
         Page = (<div>
-            <p>Email : {userDB.email}</p>
-            <p>Credits : {userDB.credits}</p>
-            <p>lastConnection : {userDB.lastConnection}</p>
+            <p>Email : {userDB && userDB.email}</p>
+            <p>Credits : {userDB && userDB.credits}</p>
+            <p>lastConnection : {userDB && userDB.lastConnection}</p>
 
             <Group>
-                <Button onClick={() => { router.push('/mycharts'); }}>my charts</Button>
-                <Button onClick={() => { router.push('/createnewchart'); }}>new chart</Button>
-                <Button onClick={() => { router.push('/credits'); }}>buy credits</Button>
+                <Button onClick={() => { setLoading(true); router.push('/mycharts'); }}>my charts</Button>
+                <Button onClick={() => { setLoading(true); router.push('/createnewchart'); }}>new chart</Button>
+                <Button onClick={() => { setLoading(true); router.push('/credits'); }}>buy credits</Button>
             </Group>
 
         </div>)
