@@ -2,6 +2,7 @@ import { IncomingForm } from 'formidable'
 // you might want to use regular 'fs' and not a promise one
 import { promises as fs } from 'fs'
 import { csvJSON } from './utils';
+import { getSession } from 'next-auth/react';
 
 // first we need to disable the default body parser
 export const config = {
@@ -11,6 +12,13 @@ export const config = {
 };
 
 export default async (req, res) => {
+    const session = await getSession({ req });
+
+    if (!session) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
+    }
+
     // parse form with a Promise wrapper
     const data = await new Promise((resolve, reject) => {
         const form = new IncomingForm()

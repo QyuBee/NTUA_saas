@@ -1,6 +1,7 @@
 import { IncomingForm } from 'formidable'
 import { promises as fs } from 'fs'
 import axios from 'axios';
+import { getSession } from 'next-auth/react';
 
 export const config = {
     api: {
@@ -9,6 +10,13 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+    const session = await getSession({ req });
+
+    if (!session) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
+    }
+
     if (req.method === 'POST') {
         const data = await new Promise((resolve, reject) => {
             const form = new IncomingForm();

@@ -1,6 +1,13 @@
+import { getSession } from 'next-auth/react';
 
 const handler = async (req, res) => {
-    if(!["bar","pie","line"].includes(req.body.type))
+  const session = await getSession({ req });
+
+  if (!session) {
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
+  }
+
     {
         res.status(400).end();
     }
