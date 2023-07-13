@@ -8,18 +8,17 @@ CREATE TABLE users (
   lastConnection VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE charts (
-    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user_id VARCHAR(255),
-    type VARCHAR(255),
-    name VARCHAR(255),
-    created DATETIME,
-    path_html VARCHAR(255),
-    path_pdf VARCHAR(255),
-    path_png VARCHAR(255),
-    path_svg VARCHAR(255),
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`email`)
+CREATE TABLE `charts` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_id` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created` varchar(255) DEFAULT NULL,
+  `path_html` varchar(255) DEFAULT NULL,
+  `path_pdf` varchar(255) DEFAULT NULL,
+  `path_png` varchar(255) DEFAULT NULL,
+  `path_svg` varchar(255) DEFAULT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`email`)
 );
-
 
 GRANT ALL ON ntua_saas.* TO 'saas_app'@'%';
