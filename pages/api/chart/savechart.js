@@ -24,7 +24,6 @@ export default async function handler(req, res) {
 
         const credit_to_remove = 20
         if (user.credits >= credit_to_remove) {
-            user.removeCredit(credit_to_remove)
             try {
 
                 //Load data from request
@@ -73,10 +72,13 @@ export default async function handler(req, res) {
                 const chart = new Chart()
                 chart.create({ email: session.user.email, type: chartOption.chart.type, name: chartOption.title.text, path_html: path_html, path_pdf: path_pdf, path_png: path_png, path_svg: path_svg })
 
+                user.removeCredit(credit_to_remove)
+
                 res.status(200).end()
             } catch (error) {
                 res.status(500).end("Error: couldn't export chart !")
             }
+
         } else {
             res.status(500).end("Error: not enough credits")
         }
@@ -106,8 +108,11 @@ async function exportChart(options, path, chart_name, type) {
 }
 
 function writeFile(file, path, filename) {
-    console.log("path", path + filename)
+    console.log("path", path )
     fs.mkdir(path, { recursive: true });
+    console.log("path created", path)
     fs.writeFile(path + filename, file);
+    console.log("file created", path + filename)
+
     return path + filename
 }
