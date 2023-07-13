@@ -11,6 +11,7 @@ export default function CreditPage() {
     const [userDB, setUserDB] = useState(null)
     const [loading, setLoading] = useState(false)
 
+
     useEffect(() => {
         const optionsAxios = {
             method: 'GET',
@@ -20,6 +21,10 @@ export default function CreditPage() {
         axiosConfig.request(optionsAxios).then(function (response) {
             const result = response.data
 
+            if (result == null) {
+                router.push("/newuser")
+            }
+
             setUserDB(result)
         }).catch(function (error) {
             console.error(error);
@@ -27,6 +32,7 @@ export default function CreditPage() {
         });
     }, [])
 
+    
     const ButtonCredit = (props) => {
         return (
             <Button onClick={() => {

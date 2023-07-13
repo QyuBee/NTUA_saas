@@ -23,6 +23,10 @@ export default function AccountPage() {
         axiosConfig.request(optionsAxios).then(function (response) {
             const result = response.data
 
+            if(result==null){
+                router.push("/newuser")
+            }
+
             setUserDB(result)
         }).catch(function (error) {
             console.error(error);

@@ -122,6 +122,25 @@ export default function MyChartsPage() {
     useEffect(() => {
         const optionsAxios = {
             method: 'GET',
+            url: '/api/auth/getuser',
+        };
+
+        axiosConfig.request(optionsAxios).then(function (response) {
+            const result = response.data
+
+            if (result == null) {
+                router.push("/newuser")
+            }
+
+        }).catch(function (error) {
+            console.error(error);
+            router.push("/")
+        });
+    }, [])
+
+    useEffect(() => {
+        const optionsAxios = {
+            method: 'GET',
             url: '/api/chart/getchartfromuser',
         };
 
