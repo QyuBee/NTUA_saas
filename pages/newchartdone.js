@@ -5,7 +5,7 @@ import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Group, Modal, LoadingOverlay } from '@mantine/core';
-import axios from 'axios';
+import axiosConfig from '@/axiosConfig'
 import { useDisclosure } from '@mantine/hooks';
 
 export default withRouter(NewChartDonePage)
@@ -171,7 +171,7 @@ function NewChartDonePage() {
 
         formData.append("chartOption", JSON.stringify(chartOptions));
 
-        axios.post(UPLOAD_ENDPOINT, formData, {
+        axiosConfig.post(UPLOAD_ENDPOINT, formData, {
             headers: {
                 "content-type": "multipart/form-data"
             }

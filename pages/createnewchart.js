@@ -2,7 +2,7 @@ import Header from './static/header';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosConfig from '@/axiosConfig'
 import { Button, Center, Container, FileInput, Group, Modal, rem, LoadingOverlay } from '@mantine/core';
 import { IconUpload } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
@@ -42,12 +42,12 @@ export default function CreateChartPage() {
             params: { type: "line" }
         };
         setLoading(true)
-        axios.all([
-            axios.request(optionsPie),
-            axios.request(optionsBar),
-            axios.request(optionsLine)
+        axiosConfig.all([
+            axiosConfig.request(optionsPie),
+            axiosConfig.request(optionsBar),
+            axiosConfig.request(optionsLine)
         ])
-            .then(axios.spread(function (pieResponse, barResponse, lineResponse) {
+            .then(axiosConfig.spread(function (pieResponse, barResponse, lineResponse) {
                 const pieData = pieResponse.data;
                 const barData = barResponse.data;
                 const lineData = lineResponse.data;
@@ -78,7 +78,7 @@ export default function CreateChartPage() {
         //since the await is added, this will pause here then console log will be called
         const formData = new FormData();
         formData.append("myfile", file, file.name);
-        axios.post(UPLOAD_ENDPOINT, formData, {
+        axiosConfig.post(UPLOAD_ENDPOINT, formData, {
             headers: {
                 "content-type": "multipart/form-data"
             }
@@ -106,7 +106,7 @@ export default function CreateChartPage() {
             params: { type: type }
         };
 
-        axios.request(optionsAxios).then(response => {
+        axiosConfig.request(optionsAxios).then(response => {
             // Manipulez la réponse du serveur
             // Dans ce cas, nous allons télécharger le fichier
             const filename = response.headers['content-disposition'].split('filename=')[1];

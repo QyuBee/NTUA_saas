@@ -1,6 +1,6 @@
 import { IncomingForm } from 'formidable'
 import { promises as fs } from 'fs'
-import axios from 'axios';
+import axiosConfig from '@/axiosConfig'
 import { Chart } from '@/lib/db_model';
 import { excuteQuery, getUser } from '@/lib/db';
 import { getSession } from 'next-auth/react';
@@ -87,7 +87,7 @@ export default async function handler(req, res) {
 }
 
 async function exportChart(options, path, chart_name, type) {
-    return await axios.post(process.env.HIGHCHART_SERVER_HOST, { "infile": options, "type": type }, {
+    return await axiosConfig.post(process.env.HIGHCHART_SERVER_HOST, { "infile": options, "type": type }, {
         headers: {
             'Content-Type': 'application/json'
         },

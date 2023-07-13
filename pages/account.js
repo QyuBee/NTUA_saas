@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import Header from './static/header';
 import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosConfig from '@/axiosConfig'
+import axiosConfig from '@/axiosConfig';
 
 export default function AccountPage() {
     const { status } = useSession();
@@ -20,7 +21,7 @@ export default function AccountPage() {
             url: '/api/auth/getuser',
         };
 
-        axios.request(optionsAxios).then(function (response) {
+        axiosConfig.request(optionsAxios).then(function (response) {
             const result = response.data
 
             setUserDB(result)

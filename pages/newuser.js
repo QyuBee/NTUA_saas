@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Header from './static/header';
 import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosConfig from '@/axiosConfig'
 
 
 export default function NewUserPage() {
@@ -21,7 +21,7 @@ export default function NewUserPage() {
         };
         setLoading(true)
 
-        axios.request(optionsAxios).then(function (response) {
+        axiosConfig.request(optionsAxios).then(function (response) {
             const result = response.data
 
             if(result==null){
@@ -42,7 +42,7 @@ export default function NewUserPage() {
                                         url: '/api/auth/adduser',
                                     };
         
-                                    axios.request(optionsAxios).then(function (response) {
+                                    axiosConfig.request(optionsAxios).then(function (response) {
                                         if (response.status != 200 && response.status != 500) {
                                             console.error("HTTP status " + response.status);
                                         }
@@ -67,7 +67,7 @@ export default function NewUserPage() {
                     url: '/api/auth/setLastConnection',
                 };
         
-                axios.request(optionsAxios).then(function (response) {
+                axiosConfig.request(optionsAxios).then(function (response) {
                     if (response.status != 200 && response.status != 500) {
                         console.error("HTTP status " + response.status);
                     }

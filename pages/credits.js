@@ -2,7 +2,7 @@ import Header from './static/header';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
-import axios from 'axios';
+import axiosConfig from '@/axiosConfig'
 import { useEffect, useState } from 'react';
 
 export default function CreditPage() {
@@ -17,7 +17,7 @@ export default function CreditPage() {
             url: '/api/auth/getuser',
         };
 
-        axios.request(optionsAxios).then(function (response) {
+        axiosConfig.request(optionsAxios).then(function (response) {
             const result = response.data
 
             setUserDB(result)
@@ -38,7 +38,7 @@ export default function CreditPage() {
                     params: { credits: props.number }
                 };
 
-                axios.request(optionsAxios)
+                axiosConfig.request(optionsAxios)
                     .then(function (response) {
                         // console.log(response.status); // Will show you the status
                         if (response.status !== 200 && response.status !== 500) {
