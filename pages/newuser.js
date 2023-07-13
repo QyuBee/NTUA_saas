@@ -17,7 +17,7 @@ export default function NewUserPage() {
     useEffect(() => {
         const optionsAxios = {
             method: 'GET',
-            url: 'http://localhost:3000/api/auth/getuser',
+            url: '/api/auth/getuser',
         };
         setLoading(true)
 
