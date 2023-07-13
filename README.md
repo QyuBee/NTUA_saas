@@ -48,6 +48,7 @@ MYSQL_PORT=3306
 MYSQL_DATABASE="ntua_saas"
 MYSQL_USER="root"
 MYSQL_PASSWORD=""
+NEXT_PUBLIC_BACKEND_URL=""
  ```
 
 https://github.com/acmesh-official/acme.sh/issues/4048
