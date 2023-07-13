@@ -62,9 +62,7 @@ export default async function handler(req, res) {
 
                 const path = `${process.cwd()}/db/${session.user.email}/${id_chart}/`
 
-                const path_html = writeFile(uploadedFile, path, id_chart + ".html")
-
-
+                const path_html = await writeFile(uploadedFile, path, id_chart + ".html")
                 const path_pdf = await exportChart(chartOption, path, id_chart, "pdf")
                 const path_png = await exportChart(chartOption, path, id_chart, "png")
                 const path_svg = await exportChart(chartOption, path, id_chart, "svg")
@@ -95,8 +93,8 @@ async function exportChart(options, path, chart_name, type) {
         },
         responseType: 'arraybuffer'
     })
-        .then(response => {
-            fs.writeFile(path + chart_name + "." + type, response.data);
+        .then(async response => {
+            await fs.writeFile(path + chart_name + "." + type, response.data);
             console.log('Le fichier a été enregistré :', path + chart_name + "." + type);
             return path + chart_name + "." + type
         })
@@ -107,11 +105,11 @@ async function exportChart(options, path, chart_name, type) {
 
 }
 
-function writeFile(file, path, filename) {
+async function writeFile(file, path, filename) {
     console.log("path", path )
-    fs.mkdir(path, { recursive: true });
+    await fs.mkdir(path, { recursive: true });
     console.log("path created", path)
-    fs.writeFile(path + filename, file);
+    await fs.writeFile(path + filename, file);
     console.log("file created", path + filename)
 
     return path + filename
