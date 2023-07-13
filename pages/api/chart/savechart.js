@@ -61,7 +61,7 @@ export default async function handler(req, res) {
                 });
                 id_chart = id_chart[0]["AUTO_INCREMENT"]
 
-                const path = `${process.env.PATH_FILES_DB}/${session.user.email}/${id_chart}/`
+                const path = `${process.cwd()}/db/${session.user.email}/${id_chart}/`
 
                 const path_html = writeFile(uploadedFile, path, id_chart + ".html")
 
