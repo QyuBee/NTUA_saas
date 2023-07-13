@@ -68,9 +68,9 @@ export default async function handler(req, res) {
                 const path_svg = await exportChart(chartOption, path, id_chart, "svg")
 
                 const chart = new Chart()
-                chart.create({ email: session.user.email, type: chartOption.chart.type, name: chartOption.title.text, path_html: path_html, path_pdf: path_pdf, path_png: path_png, path_svg: path_svg })
+                await chart.create( session.user.email, chartOption.chart.type, chartOption.title.text, path_html, path_pdf, path_png, path_svg )
 
-                user.removeCredit(credit_to_remove)
+                await user.removeCredit(credit_to_remove)
 
                 res.status(200).end()
             } catch (error) {

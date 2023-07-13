@@ -13,7 +13,7 @@ const handler = async (req, res) => {
     // console.log("req.data",req.query)
     const charts = await getChartsFromUser(session.user.email)
 
-    //   console.log(charts)
+    // console.log(charts)
 
     try {
         res.status(200).send(charts);
