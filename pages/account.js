@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import Header from './static/header';
 import { Button, Container, Group, LoadingOverlay } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import axiosConfig from '@/axiosConfig'
 import axiosConfig from '@/axiosConfig';
 
 export default function AccountPage() {
