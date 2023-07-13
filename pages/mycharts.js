@@ -16,7 +16,7 @@ function ButtonChart({ id, type }) {
             };
 
             axiosConfig.request(options).then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
 
                 // Manipulez la réponse du serveur
                 // Dans ce cas, nous allons télécharger le fichier

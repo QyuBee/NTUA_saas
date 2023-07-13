@@ -11,6 +11,7 @@ import { Carousel } from '@mantine/carousel';
 
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
+import axios from 'axios';
 
 
 
@@ -60,12 +61,12 @@ export default function CreateChartPage() {
             params: { type: "line" }
         };
         setLoading(true)
-        axiosConfig.all([
+        axios.all([
             axiosConfig.request(optionsPie),
             axiosConfig.request(optionsBar),
             axiosConfig.request(optionsLine)
         ])
-            .then(axiosConfig.spread(function (pieResponse, barResponse, lineResponse) {
+            .then(axios.spread(function (pieResponse, barResponse, lineResponse) {
                 const pieData = pieResponse.data;
                 const barData = barResponse.data;
                 const lineData = lineResponse.data;
@@ -152,7 +153,7 @@ export default function CreateChartPage() {
     return (
         <div>
             <Header></Header>
-            <LoadingOverlay visible={(templates == null || status === 'loading' || loading== true) ? true : false} overlayBlur={2} />
+            <LoadingOverlay visible={(templates == null || status === 'loading' || loading == true) ? true : false} overlayBlur={2} />
             <Container>
                 <Carousel loop>
                     {templates && templates.map((template) => {

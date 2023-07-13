@@ -22,8 +22,6 @@ const handler = async (req, res) => {
     return;
   }
 
-  console.log(req.query)
-
   let path = ""
   switch (req.query.type) {
     case "pie":
