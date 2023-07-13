@@ -27,18 +27,18 @@ export default function CreateChartPage() {
     useEffect(() => {
         const optionsPie = {
             method: 'GET',
-            url: 'http://localhost:3000/api/chart/downloadtemplatecharts',
+            url: '/api/chart/downloadtemplatecharts',
             params: { type: "pie" }
         };
 
         const optionsBar = {
             method: 'GET',
-            url: 'http://localhost:3000/api/chart/downloadtemplatecharts',
+            url: '/api/chart/downloadtemplatecharts',
             params: { type: "bar" }
         };
         const optionsLine = {
             method: 'GET',
-            url: 'http://localhost:3000/api/chart/downloadtemplatecharts',
+            url: '/api/chart/downloadtemplatecharts',
             params: { type: "line" }
         };
         setLoading(true)

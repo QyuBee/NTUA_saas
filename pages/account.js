@@ -17,7 +17,7 @@ export default function AccountPage() {
     useEffect(() => {
         const optionsAxios = {
             method: 'GET',
-            url: 'http://localhost:3000/api/auth/getuser',
+            url: '/api/auth/getuser',
         };
 
         axios.request(optionsAxios).then(function (response) {
