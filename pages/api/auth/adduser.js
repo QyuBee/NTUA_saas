@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         return;
     }
 
-    if (req.method === 'POST') {
+    if (req.method === 'GET') {
         // Process a POST request
         const result = await createUser(session.user.email);
 

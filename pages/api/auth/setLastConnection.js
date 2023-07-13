@@ -9,16 +9,16 @@ export default async function handler(req, res) {
         return;
     }
 
-    if (req.method === 'POST') {
+    if (req.method === 'GET') {
         // Process a POST request
         const user = await getUser(session.user.email);
 
         if (user instanceof Error) {
             console.error("Une erreur s'est produite :", user);
-            res.status(500).end(user.toString());
+            res.status(500).end();
         } else {
             user.setLastConnection()
-            res.status(200).end(user.toString());
+            res.status(200).end();
         }
 
     } else {

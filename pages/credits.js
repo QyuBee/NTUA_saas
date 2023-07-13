@@ -11,12 +11,10 @@ export default function CreditPage() {
     const [userDB, setUserDB] = useState(null)
     const [loading, setLoading] = useState(false)
 
-    let Page;
-
     useEffect(() => {
         const optionsAxios = {
             method: 'GET',
-            url: 'http://localhost:3000/api/auth/getuser',
+            url: '/api/auth/getuser',
         };
 
         axios.request(optionsAxios).then(function (response) {
