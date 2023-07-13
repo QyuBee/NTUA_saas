@@ -29,6 +29,7 @@ COPY --from=builder /app/SQL ./SQL
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/public ./public
 RUN mkdir /app/db
+RUN chown nextjs:nodejs /app/db
 
 USER nextjs
 
