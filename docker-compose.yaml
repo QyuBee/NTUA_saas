@@ -5,41 +5,51 @@ volumes:
     driver: local
   db:
     driver: local
-
+    
 services:
-  ntua-saas-backend:
-    image: docker.io/mariadb:latest
-    container_name: ntua-saas-backend
-    ports:
-      - "3306:3306"
-    environment:
-      - MARIADB_USER=
-      - MARIADB_PASSWORD=
-      - MARIADB_ROOT_PASSWORD=
-    volumes:
-      - db-init-file:/docker-entrypoint-initdb.d/
-    network_mode: bridge
-    restart: always
-
   ntua-saas-frontend:
     image: ghcr.io/qyubee/mychart:main
     container_name: ntua-saas-frontend
-    depends_on:
-      - "ntua-saas-backend"
     ports:
-      - "3000:3000"
+      - "4007:3000"
     volumes:
       - db-init-file:/app/SQL
     environment:
-      - GOOGLE_ID=                        # Google id from https://console.cloud.google.com/apis/credentials/oauthclient/
-      - GOOGLE_SECRET=                    # Google secret from https://console.cloud.google.com/apis/credentials/oauthclient/
-      - NEXTAUTH_URL=                     # URL of website ex: http://localhost:3000
-      - NEXTAUTH_SECRET=                  # Used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Create one with : openssl rand -base64 32
-      - MYSQL_HOST="localhost"
+      - GOOGLE_ID=98808914106-7nd8hao8n8gf0b25hgpua9u4t5gsm6or.apps.googleusercontent.com
+      - GOOGLE_SECRET=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
+      - NEXTAUTH_URL=147.102.1.169:4007
+      - NEXTAUTH_SECRET=I4zN1yz+9KDGsNvukGlOzzyztVNIWo2paroEyUA9YNA=
+      - NEXT_PUBLIC_BACKEND_URL=147.102.1.169:4007
+      - MYSQL_HOST=147.102.1.169
       - MYSQL_PORT=3306
-      - MYSQL_DATABASE="ntua_saas"
-      - MYSQL_USER=""
-      - MYSQL_PASSWORD=""
+      - MYSQL_DATABASE=ntua_saas
+      - MYSQL_USER=saas_app
+      - MYSQL_PASSWORD=saas_app
+      - HIGHCHART_SERVER_HOST=http://147.102.1.169:8089
     network_mode: bridge
     restart: always
+  ntua-saas-backend:
+    image: docker.io/mariadb:latest
+    container_name: ntua-saas-backend
+    depends_on:
+      - "ntua-saas-frontend"
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_USER=saas_app
+      - MARIADB_ROOT_PASSWORD=saas_app
+      - MARIADB_PASSWORD=saas_app
+    volumes:
+      - db-init-file:/docker-entrypoint-initdb.d/
+      - "db:/var/lib/mysql"
+    network_mode: bridge
+    restart: always
+  highcharts:
+    container_name: ntua-saas-highcharts
+    ports:
+      - "8089:8080" 
+    image: vieirinhasantana/highchart-export-server
+    restart: always
+    network_mode: bridge
+
     
