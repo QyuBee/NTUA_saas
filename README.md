@@ -1,54 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mychart
+Student: Quentin BARON (ERASMUS)
 
-## Getting Started
+## Installation
+You can use the script [docker-compose.yaml](./docker-compose.yaml), it will create the stack with the last image build from repository. Or you can build the image from [Dockerfile](./Dockerfile).
+You need to specify the environnement variable inside [docker-compose.yaml](./docker-compose.yaml) such as GOOGLE_ID, GOOGLE_SECRET and NEXTAUTH_SECRET.
 
-First, run the development server:
+## Demo
+This project is accessible on [dev.qyubee.fr](dev.qyubee.fr). This is a private server where I excecute this project.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Stress Test
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+I don't think I have enough time to do it. I may be very late because I don't know when to return the project.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## ULM
+As my free trial of Visual Paradigm run out, I could use it for my diagram. I hope theses schemes will be fine for you. 
+### Class Diagram
+![Class Diagram](docs/class_diagram.png)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Deployement Diagram
+![Deployement Diagram](docs/deployement_diagram.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Component Diagram
+![Component Diagram](docs/component_diagram.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Sequence Diagram : MyCharts
+![sequence diagram My Charts](docs/seq_diagram_My_Charts.png)
+### Sequence Diagram : Create User
+![sequence diagram Create User](docs/seq_diagram_Create_user.png)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-
-## You need to add .env to root directory that includes the following 
-
-```bash
-GOOGLE_ID={place_something_here}
-GOOGLE_SECRET={place_something_here}
-MYSQL_HOST="localhost"
-MYSQL_PORT=3306
-MYSQL_DATABASE="ntua_saas"
-MYSQL_USER="root"
-MYSQL_PASSWORD=""
-NEXT_PUBLIC_BACKEND_URL=""
- ```
-
-https://github.com/acmesh-official/acme.sh/issues/4048
+### Sequence Diagram : Create Chart
+![sequence diagram Create Chart](docs/seq_diagram_Create_chart.png)
+### Sequence Diagram : Purchase Credits
+![sequence diagram Purchase Credit](docs/seq_diagram_Purchase_Credit.png)

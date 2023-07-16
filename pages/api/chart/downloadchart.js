@@ -18,30 +18,8 @@ const handler = async (req, res) => {
     return;
   }
 
-  let path = ""
-  switch (req.query.type) {
-    case "html":
-      path = chart.path_html
-      break;
-    case "png":
-      path = chart.path_png
-      break;
-    case "pdf":
-      path = chart.path_pdf
-      // console.log(path)
-      break;
-    case "svg":
-      console.log("chartchartchartchart", chart)
-      path = chart.path_svg
-      break;
-    default:
-      break;
-  }
-  // console.log(req.query.type=="pdf")
   try {
-    let fs = require('fs');
-    const file = fs.createReadStream(path);
-    // console.log(file.path)
+    const file = getFile(chart,req.query.type)
     res
       .status(200)
       // .setHeader("Content-Type", "text/csv")
@@ -53,5 +31,31 @@ const handler = async (req, res) => {
     res.status(400).json({ error });
   }
 };
+
+function getFile(chart,type){
+  let path = ""
+  switch (type) {
+    case "html":
+      path = chart.path_html
+      break;
+    case "png":
+      path = chart.path_png
+      break;
+    case "pdf":
+      path = chart.path_pdf
+      break;
+    case "svg":
+      path = chart.path_svg
+      break;
+    default:
+      break;
+  }
+  // console.log(req.query.type=="pdf")
+
+    let fs = require('fs');
+    const file = fs.createReadStream(path);
+    // console.log(file.path)
+    return file
+}
 
 export default handler;
