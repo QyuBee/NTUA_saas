@@ -95,7 +95,7 @@ async function exportChart(options, path, chart_name, type) {
     })
         .then(async response => {
             await fs.writeFile(path + chart_name + "." + type, response.data);
-            console.log('Le fichier a été enregistré :', path + chart_name + "." + type);
+            // console.log('Le fichier a été enregistré :', path + chart_name + "." + type);
             return path + chart_name + "." + type
         })
         .catch(error => {
