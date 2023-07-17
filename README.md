@@ -6,7 +6,7 @@ You can use the script [docker-compose.yaml](./docker-compose.yaml), it will cre
 You need to specify the environnement variable inside [docker-compose.yaml](./docker-compose.yaml) such as GOOGLE_ID, GOOGLE_SECRET and NEXTAUTH_SECRET.
 
 ## Demo
-This project is accessible on [dev.qyubee.fr](dev.qyubee.fr). This is a private server where I excecute this project.
+This project is accessible on [dev.qyubee.fr](https://dev.qyubee.fr). This is a private server where I excecute this project.
 
 ## Stress Test
 

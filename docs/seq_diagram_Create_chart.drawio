@@ -1,22 +1,22 @@
 <mxfile host="65bd71144e">
     <diagram id="T2SGenoJDVw-8LUJ9btR" name="Page-1">
-        <mxGraphModel dx="483" dy="537" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="652" dy="725" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="36" value="NextJS API" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="36" value="NextJS API" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="370" y="210" width="100" height="510" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="36">
+                <mxCell id="37" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="36" vertex="1">
                     <mxGeometry x="40" y="90" width="20" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="36">
+                <mxCell id="73" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="36" vertex="1">
                     <mxGeometry x="40" y="235" width="20" height="85" as="geometry"/>
                 </mxCell>
-                <mxCell id="74" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="36">
+                <mxCell id="74" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="36" vertex="1">
                     <mxGeometry x="50" y="260" width="20" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="75" value="csvJSON" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="36" target="74">
+                <mxCell id="75" value="csvJSON" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" parent="36" target="74" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="60" y="240" as="sourcePoint"/>
                         <Array as="points">
@@ -25,7 +25,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="76" value="return JSON file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=1.11;exitY=0.89;entryX=0.987;entryY=0.921;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="36" source="74" target="73">
+                <mxCell id="76" value="return JSON file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=1.11;exitY=0.89;entryX=0.987;entryY=0.921;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="36" source="74" target="73" edge="1">
                     <mxGeometry x="-0.2151" y="10" relative="1" as="geometry">
                         <mxPoint x="120.00000000000006" y="311.22" as="targetPoint"/>
                         <Array as="points">
@@ -37,24 +37,24 @@
                         <mxPoint x="259.3199999999997" y="311.5" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="42" value="Highchart export&lt;br&gt;server" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;lifelineDashed=0;" vertex="1" parent="1">
+                <mxCell id="42" value="Highchart export&lt;br&gt;server" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;lifelineDashed=0;" parent="1" vertex="1">
                     <mxGeometry x="539" y="210" width="100" height="870" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="Create new chart Page" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="46" value="Create new chart Page" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="110" y="210" width="100" height="870" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="46">
+                <mxCell id="47" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="46" vertex="1">
                     <mxGeometry x="40" y="80" width="20" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="67" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="46">
+                <mxCell id="67" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="46" vertex="1">
                     <mxGeometry x="40" y="233" width="20" height="197" as="geometry"/>
                 </mxCell>
-                <mxCell id="68" value="Upload a CSV file&lt;br&gt;and&lt;br&gt;Click on button&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;send file" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" parent="46" target="67">
+                <mxCell id="68" value="Upload a CSV file&lt;br&gt;and&lt;br&gt;Click on button&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;send file" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" parent="46" target="67" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="-70.33333333333326" y="233" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="69" value="generate chart on&lt;br&gt;page&lt;br&gt;newchartdone" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="46">
+                <mxCell id="69" value="generate chart on&lt;br&gt;page&lt;br&gt;newchartdone" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="46" edge="1">
                     <mxGeometry x="-0.0905" relative="1" as="geometry">
                         <mxPoint x="170" y="423" as="targetPoint"/>
                         <mxPoint as="offset"/>
@@ -64,7 +64,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="46">
+                <mxCell id="96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" parent="46" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="170.1199999999999" y="810" as="sourcePoint"/>
                         <mxPoint x="-70.12074074074076" y="810" as="targetPoint"/>
@@ -74,12 +74,12 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="97" value="Redirect to mycharts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="96">
+                <mxCell id="97" value="Redirect to mycharts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="96" vertex="1" connectable="0">
                     <mxGeometry x="0.6248" y="2" relative="1" as="geometry">
                         <mxPoint x="65" y="-12" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="50" value="return CSV file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;entryX=0.986;entryY=0.803;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="37" target="47">
+                <mxCell id="50" value="return CSV file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;entryX=0.986;entryY=0.803;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="37" target="47" edge="1">
                     <mxGeometry x="0.0283" y="-2" relative="1" as="geometry">
                         <mxPoint x="200" y="386" as="targetPoint"/>
                         <mxPoint as="offset"/>
@@ -88,7 +88,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="51" value="REST : downloadtemplate" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;exitX=1.027;exitY=0.167;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="47" target="37">
+                <mxCell id="51" value="REST : downloadtemplate" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;exitX=1.027;exitY=0.167;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="47" target="37" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="200" y="310" as="sourcePoint"/>
                         <Array as="points">
@@ -97,27 +97,27 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="52" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="52" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="30" y="200" width="20" height="880" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="Click on button&lt;br&gt;download template" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" parent="1" source="52" target="47">
+                <mxCell id="53" value="Click on button&lt;br&gt;download template" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" parent="1" source="52" target="47" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="80" y="290" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="54" value="successfully &lt;br&gt;download template" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;" edge="1" parent="1" source="47" target="52">
+                <mxCell id="54" value="successfully &lt;br&gt;download template" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;" parent="1" source="47" target="52" edge="1">
                     <mxGeometry x="-0.0905" relative="1" as="geometry">
                         <mxPoint x="70" y="470" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="55" value="New chart done Page" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="55" value="New chart done Page" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="240" y="210" width="100" height="870" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="55">
+                <mxCell id="70" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="55" vertex="1">
                     <mxGeometry x="40" y="422" width="20" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="77" value="return JSON file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;entryX=0.986;entryY=0.803;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="55">
+                <mxCell id="77" value="return JSON file" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;entryX=0.986;entryY=0.803;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="55" edge="1">
                     <mxGeometry x="0.0283" y="-2" relative="1" as="geometry">
                         <mxPoint x="-70.27999999999997" y="320.17999999999995" as="targetPoint"/>
                         <mxPoint as="offset"/>
@@ -127,10 +127,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="79" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="55">
+                <mxCell id="79" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="55" vertex="1">
                     <mxGeometry x="40" y="510" width="20" height="310" as="geometry"/>
                 </mxCell>
-                <mxCell id="72" value="REST : parsecsv" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;exitX=1.027;exitY=0.167;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1">
+                <mxCell id="72" value="REST : parsecsv" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;exitX=1.027;exitY=0.167;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="170.26999999999995" y="454.73000000000013" as="sourcePoint"/>
                         <mxPoint x="409.73" y="454.71000000000004" as="targetPoint"/>
@@ -140,23 +140,23 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="78" value="Click on button&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;save to my charts" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="1">
+                <mxCell id="78" value="Click on button&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;save to my charts" style="html=1;verticalAlign=bottom;endArrow=block;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="39.99666666666674" y="719.31" as="sourcePoint"/>
                         <mxPoint x="280" y="719" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="80" value="DataBase" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;lifelineDashed=0;" vertex="1" parent="1">
+                <mxCell id="80" value="DataBase" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;lifelineDashed=0;" parent="1" vertex="1">
                     <mxGeometry x="700" y="210" width="100" height="860" as="geometry"/>
                 </mxCell>
-                <mxCell id="93" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="80">
+                <mxCell id="93" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="80" vertex="1">
                     <mxGeometry x="39.39999999999998" y="760" width="18" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="1">
+                <mxCell id="81" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="1" vertex="1">
                     <mxGeometry x="410.28" y="740" width="20" height="270" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="return State" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="81">
+                <mxCell id="82" value="return State" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="81" edge="1">
                     <mxGeometry x="0.0283" y="-2" relative="1" as="geometry">
                         <mxPoint x="300" y="996" as="targetPoint"/>
                         <mxPoint as="offset"/>
@@ -166,7 +166,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="83" value="REST : savechart" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" target="81">
+                <mxCell id="83" value="REST : savechart" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;edgeStyle=orthogonalEdgeStyle;" parent="1" target="81" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="300" y="740" as="sourcePoint"/>
                         <Array as="points">
@@ -175,10 +175,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="84" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="1">
+                <mxCell id="84" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="1" vertex="1">
                     <mxGeometry x="420" y="770" width="20" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="85" value="Check enough credits" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="1" target="84">
+                <mxCell id="85" value="Check enough credits" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" parent="1" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="430" y="750" as="sourcePoint"/>
                         <Array as="points">
@@ -187,7 +187,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="86" target="89">
+                <mxCell id="88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="86" target="89" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="570" y="870" as="targetPoint"/>
                         <Array as="points">
@@ -196,10 +196,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="86" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="1">
+                <mxCell id="86" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="1" vertex="1">
                     <mxGeometry x="420" y="850" width="20" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="export chart" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="1" target="86">
+                <mxCell id="87" value="export chart" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" parent="1" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="430" y="830" as="sourcePoint"/>
                         <Array as="points">
@@ -208,10 +208,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="89" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="1">
+                <mxCell id="89" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="1" vertex="1">
                     <mxGeometry x="579" y="870" width="20" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" value="return paths" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=1.041;entryY=0.86;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="86">
+                <mxCell id="90" value="return paths" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=1.041;entryY=0.86;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="86" edge="1">
                     <mxGeometry x="0.0283" y="-2" relative="1" as="geometry">
                         <mxPoint x="450" y="910" as="targetPoint"/>
                         <mxPoint as="offset"/>
@@ -219,10 +219,10 @@
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="91" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="1">
+                <mxCell id="91" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" parent="1" vertex="1">
                     <mxGeometry x="420" y="960" width="20" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="92" value="chart.create" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="1" target="91">
+                <mxCell id="92" value="chart.create" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" parent="1" target="91" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="430" y="940" as="sourcePoint"/>
                         <Array as="points">
@@ -231,7 +231,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="95" value="SQL : Insert Chart" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" target="93">
+                <mxCell id="95" value="SQL : Insert Chart" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;edgeStyle=orthogonalEdgeStyle;" parent="1" target="93" edge="1">
                     <mxGeometry x="0.2878" relative="1" as="geometry">
                         <mxPoint x="440" y="970" as="sourcePoint"/>
                         <Array as="points">
